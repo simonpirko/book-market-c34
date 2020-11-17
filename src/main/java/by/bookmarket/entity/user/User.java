@@ -14,4 +14,10 @@ public class User {
     private String password;
     private String name;
     private Role role;
+
+    public User(String login, String password, String name) {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+    }
 }
