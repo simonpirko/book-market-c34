@@ -8,10 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter
-public class ExampleFilter extends HttpFilter {
+@WebFilter (filterName = "RegWhenAuthFilter", servletNames="regServlet")
+public class RegWhenAuthFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        chain.doFilter(req, res);
+        if (req.getSession().getAttribute("user") == null) {
+            chain.doFilter(req, res);
+        } else {
+            res.sendError(403);
+        }
     }
 }
