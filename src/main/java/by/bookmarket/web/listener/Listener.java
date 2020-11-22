@@ -12,6 +12,7 @@ public class Listener implements HttpSessionListener, HttpSessionAttributeListen
     private UserService userService = new UserService();
 
 
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         userService.synchronize();
