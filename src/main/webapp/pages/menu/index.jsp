@@ -28,7 +28,7 @@
     div.menu{
         width: 250px;
         margin: 0 10px 10px 0;
-        padding: 10px 0;
+        padding: 50px 100px;
         text-align: left;
         display: inline-block;
         vertical-align: top;
@@ -97,57 +97,19 @@
 </div>
 </div>
 <br><br><br>
-<div>
-    <div class="menu" style="padding-left: 40px">
-        <img class="menu" src="https://avatars.mds.yandex.net/get-districts/403922/2a00000165c3825223d9aa2eb6455de40bf0/optimize">
-        <h4>Развлечения</h4>
-        <ul>
-        <li class="nav-item">
-            <a class="nav-link" href="/pages/.jsp" style="color: black;">Настольные игры</a>
-        </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Наборы для творчества</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Рисование</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Книги для творчества</a>
-            </li>
-        </ul>
-    </div>
-
+<div style="padding-left: 150px">
     <div class="menu">
         <img class="menu" src="https://img1.goodfon.ru/original/3000x1949/8/83/knigi-oblozhki-zakladka-doska.jpg">
         <h4>Книги</h4>
         <ul>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Художественная литература</a>
+                <a class="nav-link" href="/pages/categories/fiction.jsp" style="color: black;">Художественная литература</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Учебная литература</a>
+                <a class="nav-link" href="/pages/categories/education.jsp" style="color: black;">Учебная литература</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Детская литература</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Бизнес-литература</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Нехудожественная литература</a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="menu">
-        <img class="menu" src="https://www.culture.ru/storage/images/58a6d8c1cb971eb0c89d1d6aac9e9843/44772ba147f87f0e5f252557e9dbc0be.jpeg">
-        <h4>Сувениры</h4>
-        <ul>
-            <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Белорусские сувениры</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Сувениры для праздников</a>
+                <a class="nav-link" href="/pages/categories/children.jsp" style="color: black;">Детская литература</a>
             </li>
         </ul>
     </div>
@@ -157,13 +119,10 @@
         <h4>Канцтовары</h4>
         <ul>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Бумажные принадлежности</a>
+                <a class="nav-link" href="/pages/categories/paperSupplies.jsp" style="color: black;">Бумажные принадлежности</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Рисование, письмо</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pages/.jsp" style="color: black;">Канцелярские мелочи</a>
+                <a class="nav-link" href="/pages/categories/stationery.jsp" style="color: black;">Канцелярские мелочи</a>
             </li>
         </ul>
     </div>

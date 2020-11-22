@@ -4,6 +4,7 @@
     <title>
         Authorization page
     </title>
+</head>
 <body>
 <form action="/auth" method="post">
     Input login

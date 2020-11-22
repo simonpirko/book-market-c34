@@ -4,6 +4,7 @@
     <title>
         Registration page
     </title>
+</head>
 <body>
 <form action="/reg" method="post">
     Login: <input name="login"/>
