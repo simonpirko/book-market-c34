@@ -11,14 +11,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
-    private static int incId = 1;
-    private long id = incId++;
+    private long id;
     private String name;
     private String author;
     private Format format;
     private String publisher;
     private GregorianCalendar publicationDate;
     private int pages;
+    private int quantity;
     private List<Genres> genres;
     private double cost;
     private BookStatus bookStatus;

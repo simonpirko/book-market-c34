@@ -8,16 +8,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private static int incId = 1;
-    private long id = incId++;
-    private String login;
+    private long id;
+    private String username;
     private String password;
     private String name;
     private Role role;
 
-    public User(String login, String password, String name) {
-        this.login = login;
+    public User(String username, String password, String name, Role role) {
+        this.username = username;
         this.password = password;
         this.name = name;
+        this.role = role;
     }
 }
