@@ -9,14 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
     private long id;
-    private String login;
+    private String username;
     private String password;
     private String name;
     private Role role;
 
-    public User(String login, String password, String name) {
-        this.login = login;
+    public User(String username, String password, String name, Role role) {
+        this.username = username;
         this.password = password;
         this.name = name;
+        this.role = role;
     }
 }
