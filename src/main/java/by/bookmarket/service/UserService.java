@@ -5,6 +5,7 @@ import by.bookmarket.dao.user.UserDaoDB;
 import by.bookmarket.entity.user.User;
 import by.bookmarket.errors.IdDoesntExist;
 import by.bookmarket.errors.IsEmptyException;
+import by.bookmarket.errors.UserByUsernameDoesntExist;
 import by.bookmarket.errors.UsersByIdDoesntMatch;
 
 import java.util.List;
@@ -75,5 +76,12 @@ public class UserService {
 
     public void synchronize(){
         iMUD.save(uDDB.getAll());
+    }
+
+    public User getByUsernameFromInMemory(String username){
+        if (iMUD.getByUsername(username) == null){
+            throw new UserByUsernameDoesntExist();
+        }
+        return iMUD.getByUsername(username);
     }
 }

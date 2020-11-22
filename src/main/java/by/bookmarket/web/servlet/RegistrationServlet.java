@@ -1,5 +1,6 @@
 package by.bookmarket.web.servlet;
 
+import by.bookmarket.entity.user.Role;
 import by.bookmarket.entity.user.User;
 import by.bookmarket.service.UserService;
 
@@ -24,8 +25,8 @@ public class RegistrationServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
-        User user = new User(login, password, name);
-        userService.save(user);
+        User user = new User(login, password, name, Role.USER);
+        userService.synchronizedSave(user);
         getServletContext().getRequestDispatcher("/pages/auth.jsp").forward(req, resp);
     }
 }

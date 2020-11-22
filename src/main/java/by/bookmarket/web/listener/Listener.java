@@ -46,6 +46,4 @@ public class Listener implements HttpSessionListener, HttpSessionAttributeListen
     public void sessionDestroyed(HttpSessionEvent se) {
 
     }
-
-
 }

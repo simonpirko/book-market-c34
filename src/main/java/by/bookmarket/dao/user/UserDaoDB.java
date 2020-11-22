@@ -76,6 +76,25 @@ public class UserDaoDB implements UserDao {
     }
 
     @Override
+    public User getByUsername(String username) {
+        User user = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from users where login = ?");
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            user = new User(resultSet.getLong(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    Role.valueOf(resultSet.getString(5)));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
     public boolean contains(long id) {
         try {
             Statement statement = connection.createStatement();

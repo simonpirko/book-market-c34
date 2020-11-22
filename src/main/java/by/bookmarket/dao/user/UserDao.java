@@ -11,6 +11,8 @@ public interface UserDao {
 
     User getById(long id);
 
+    User getByUsername(String username);
+
     boolean contains(long id);
 
     boolean contains(User user);

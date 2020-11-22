@@ -24,7 +24,7 @@ public class AuthorizationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        User user = userService.getUserByLogin(login);
+        User user = userService.getByUsernameFromInMemory(login);
         if (user.getPassword().equals(password)) {
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("user", user);
