@@ -17,7 +17,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/menu/registration.jsp").forward(req, resp);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class RegistrationServlet extends HttpServlet {
         String name = req.getParameter("name");
         User user = new User(login, password, name, Role.USER);
         userService.synchronizedSave(user);
-        getServletContext().getRequestDispatcher("/pages/auth.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
     }
 }

@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; ISO-8859-1" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <html>
 <head>
     <title>
-        Registration page
+        Регистрация
     </title>
 </head>
 <body>
@@ -20,4 +20,3 @@
 </p>
 </body>
 </html>
-
