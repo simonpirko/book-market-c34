@@ -1,18 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 017 17.11.20
-  Time: 20:04
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Main page</title>
 </head>
 <body>
-<form action="/" method="post">
-
+<p align="center">
+    <img src="pics/calc.jpg" width="500" height="500" alt=""/>
+    <form action="/main" method="post">
+<p align="center">
+    Choose your action
+    <c:if test="${requestScope.flag1}">
+        <a href="/reg">Registrate</a>
+    </c:if>
+    <c:if test="${requestScope.flag2}">
+        <a href="/auth">Authorize</a>
+    </c:if>
+    <c:if test="${requestScope.flag3}">
+        <a href="/logout">Logout</a>
+    </c:if>
+</p>
 </form>
 </body>
 </html>

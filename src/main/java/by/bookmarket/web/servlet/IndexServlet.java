@@ -1,0 +1,23 @@
+package by.bookmarket.web.servlet;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+@WebServlet(urlPatterns = "/" , name = "index")
+public class IndexServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("flag1",true);
+        req.setAttribute("flag2",true);
+        req.setAttribute("flag3",false);
+        getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, resp);
+    }
+}
