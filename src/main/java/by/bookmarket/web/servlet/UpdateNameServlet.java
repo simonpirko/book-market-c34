@@ -21,7 +21,10 @@ public class UpdateNameServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp, String newName, String id) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id;
+        String newName = null;
         id = req.getParameter("id");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
