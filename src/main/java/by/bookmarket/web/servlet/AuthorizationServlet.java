@@ -22,9 +22,9 @@ public class AuthorizationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("login");
+        String username = req.getParameter("username");
         String password = req.getParameter("password");
-        User user = userService.getByUsernameFromInMemory(login);
+        User user = userService.getByUsernameFromInMemory(username);
         if (user.getPassword().equals(password)) {
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("user", user);
