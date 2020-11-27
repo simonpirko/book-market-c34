@@ -13,7 +13,7 @@ public class UserDaoDB implements UserDao {
     {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "TMS8");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "2004Postgre");
         } catch (SQLException | ClassNotFoundException throwable) {
             throwable.printStackTrace();
         }
@@ -25,7 +25,7 @@ public class UserDaoDB implements UserDao {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into users values ( default, ?, ?, ?, ? )");
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getUsername());
+            preparedStatement.setString(3, user.getName());
             preparedStatement.setString(4, String.valueOf(user.getRole()));
             preparedStatement.execute();
         } catch (SQLException throwable) {
