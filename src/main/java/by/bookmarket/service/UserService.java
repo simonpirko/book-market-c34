@@ -2,11 +2,9 @@ package by.bookmarket.service;
 
 import by.bookmarket.dao.user.InMemoryUserDao;
 import by.bookmarket.dao.user.UserDaoDB;
+import by.bookmarket.entity.book.Book;
 import by.bookmarket.entity.user.User;
-import by.bookmarket.errors.IdDoesntExist;
-import by.bookmarket.errors.IsEmptyException;
-import by.bookmarket.errors.UserByUsernameDoesntExist;
-import by.bookmarket.errors.UsersByIdDoesntMatch;
+import by.bookmarket.errors.*;
 
 import java.util.List;
 
@@ -83,5 +81,12 @@ public class UserService {
             throw new UserByUsernameDoesntExist();
         }
         return iMUD.getByUsername(username);
+    }
+
+    public User getByIdFromInMemory(long id){
+        if (iMUD.getById(id) == null){
+            throw new UsersByIdDoesntMatch();
+        }
+        return iMUD.getById(id);
     }
 }

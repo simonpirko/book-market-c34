@@ -1,5 +1,6 @@
 package by.bookmarket.web.listener;
 
+import by.bookmarket.service.BookService;
 import by.bookmarket.service.UserService;
 
 import javax.servlet.ServletContextEvent;
@@ -10,12 +11,14 @@ import javax.servlet.http.*;
 @WebListener
 public class Listener implements HttpSessionListener, HttpSessionAttributeListener, ServletContextListener {
     private UserService userService = new UserService();
+    private BookService bookService = new BookService();
 
 
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         userService.synchronize();
+        bookService.synchronize();
     }
 
     @Override

@@ -22,10 +22,10 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("login");
+        String username = req.getParameter("login");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
-        User user = new User(login, password, name, Role.USER);
+        User user = new User(username, password, name, Role.USER);
         userService.synchronizedSave(user);
         getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
     }
