@@ -2,7 +2,6 @@ package by.bookmarket.service;
 
 import by.bookmarket.dao.user.InMemoryUserDao;
 import by.bookmarket.dao.user.UserDaoDB;
-import by.bookmarket.entity.book.Book;
 import by.bookmarket.entity.user.User;
 import by.bookmarket.errors.*;
 
@@ -16,8 +15,8 @@ public class UserService {
         if (iMUD.contains(user) && uDDB.contains(user)) {
             return false;
         } else {
-            iMUD.save(user);
             uDDB.save(user);
+            iMUD.save(uDDB.getByUsername(user.getUsername()));
         }
         return true;
     }
