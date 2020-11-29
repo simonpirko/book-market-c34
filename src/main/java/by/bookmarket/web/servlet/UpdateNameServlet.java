@@ -8,30 +8,29 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/auth", name = "authServlet")
-public class AuthorizationServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/update", name = "updateServlet")
+public class UpdateNameServlet extends HttpServlet {
     private UserService userService = new UserService();
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("user") != null) {
+            User user = (User) req.getSession().getAttribute("user");
+            resp.getWriter().println(user);
+        } else {
+            resp.getWriter().println("User is not auth");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id;
+        String newName = null;
+        id = req.getParameter("id");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        User user = userService.getByUsernameFromInMemory(username);
-        if (user.getPassword().equals(password)) {
-            HttpSession httpSession = req.getSession();
-            httpSession.setAttribute("user", user);
-            getServletContext().getRequestDispatcher("/pages/menu/index.jsp").forward(req, resp);
-        } else {
-            req.setAttribute("message", "Failed: wrong password");
-            getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
-        }
+        String name = req.getParameter("name");
+        userService.synchronizedUpdateName(newName, Long.parseLong(id));
     }
 }

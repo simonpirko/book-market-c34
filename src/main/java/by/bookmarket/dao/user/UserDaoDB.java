@@ -25,7 +25,7 @@ public class UserDaoDB implements UserDao {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into users values ( default, ?, ?, ?, ? )");
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getUsername());
+            preparedStatement.setString(3, user.getName());
             preparedStatement.setString(4, String.valueOf(user.getRole()));
             preparedStatement.execute();
         } catch (SQLException throwable) {
