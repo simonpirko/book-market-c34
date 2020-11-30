@@ -5,11 +5,11 @@ import by.bookmarket.entity.book.BookStatus;
 import by.bookmarket.entity.book.Format;
 import by.bookmarket.entity.book.Genre;
 
-import java.util.Date;
 import java.util.List;
 
 public interface BookDao {
     boolean save(Book book);
+    public boolean saveFirst(Book book);
 
     List<Book> getAll();
 
@@ -31,7 +31,7 @@ public interface BookDao {
 
     String updatePublisher(String newPublisher, long id);
 
-    Date updatePublicationDate(Date newDate, long id);
+    int updatePublicationDate(int newDate, long id);
 
     int updatePages(int newPages, long id);
 

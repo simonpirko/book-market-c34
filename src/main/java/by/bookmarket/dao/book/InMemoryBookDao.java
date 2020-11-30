@@ -4,10 +4,8 @@ import by.bookmarket.entity.book.Book;
 import by.bookmarket.entity.book.BookStatus;
 import by.bookmarket.entity.book.Format;
 import by.bookmarket.entity.book.Genre;
-import by.bookmarket.entity.user.User;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class InMemoryBookDao implements BookDao {
@@ -15,6 +13,9 @@ public class InMemoryBookDao implements BookDao {
 
     @Override
     public boolean save(Book book) {
+        return books.add(book);
+    }
+    public boolean saveFirst(Book book) {
         return books.add(book);
     }
 
@@ -103,7 +104,7 @@ public class InMemoryBookDao implements BookDao {
     }
 
     @Override
-    public Date updatePublicationDate(Date newDate, long id) {
+    public int updatePublicationDate(int newDate, long id) {
         getById(id).setPublicationDate(newDate);
         return newDate;
     }

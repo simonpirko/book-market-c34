@@ -7,9 +7,7 @@ import by.bookmarket.entity.book.Format;
 import by.bookmarket.entity.book.Genre;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class BookDaoDB implements BookDao {
@@ -18,7 +16,7 @@ public class BookDaoDB implements BookDao {
     {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "root");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "TMS8");
         } catch (SQLException | ClassNotFoundException throwable) {
             throwable.printStackTrace();
         }
@@ -32,7 +30,30 @@ public class BookDaoDB implements BookDao {
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setString(3, String.valueOf(book.getFormat()));
             preparedStatement.setString(4, book.getPublisher());
-            preparedStatement.setLong(5, book.getPublicationDate().getTime());
+            preparedStatement.setLong(5, book.getPublicationDate());
+            preparedStatement.setInt(6, book.getPages());
+            preparedStatement.setInt(7, book.getQuantity());
+            preparedStatement.setString(8, String.valueOf(book.getGenre()));
+            preparedStatement.setDouble(9, book.getCost());
+            preparedStatement.setString(10, String.valueOf(book.getBookStatus()));
+            preparedStatement.setString(11, book.getDescription());
+            preparedStatement.execute();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean saveFirst(Book book) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into books values (default,?,?,?,?,?,?,?,?,?,?,?)");
+            preparedStatement.setString(1, book.getName());
+            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setString(3, String.valueOf(book.getFormat()));
+            preparedStatement.setString(4, book.getPublisher());
+            preparedStatement.setLong(5, book.getPublicationDate());
             preparedStatement.setInt(6, book.getPages());
             preparedStatement.setInt(7, book.getQuantity());
             preparedStatement.setString(8, String.valueOf(book.getGenre()));
@@ -59,8 +80,7 @@ public class BookDaoDB implements BookDao {
                 String author = resultSet.getString(3);
                 Format format =  Format.valueOf(resultSet.getString(4));
                 String publisher = resultSet.getString(5);
-                Date date = new Date();
-                date.setTime(resultSet.getLong(6));
+                int date = resultSet.getInt(6);
                 int pages = resultSet.getInt(7);
                 int quantity = resultSet.getInt(8);
                 Genre genre = Genre.valueOf(resultSet.getString(9));
@@ -79,7 +99,6 @@ public class BookDaoDB implements BookDao {
     @Override
     public Book getById(long id) {
         Book book = null;
-        Date date = new Date();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from books where id = ?");
             preparedStatement.setLong(1, id);
@@ -90,7 +109,7 @@ public class BookDaoDB implements BookDao {
                 String author = resultSet.getString(3);
                 Format format = Format.valueOf(resultSet.getString(4));
                 String publisher = resultSet.getString(5);
-                date.setTime(resultSet.getLong(6));
+                int date= resultSet.getInt(6);
                 int pages = resultSet.getInt(7);
                 int quantity = resultSet.getInt(8);
                 Genre genre = Genre.valueOf(resultSet.getString(9));
@@ -108,7 +127,7 @@ public class BookDaoDB implements BookDao {
     public Book getByBookName(String bookName) {
         Book book = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from books where login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from books where name = ?");
             preparedStatement.setString(1, bookName);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -117,8 +136,7 @@ public class BookDaoDB implements BookDao {
             String author = resultSet.getString(3);
             Format format =  Format.valueOf(resultSet.getString(4));
             String publisher = resultSet.getString(5);
-            Date date = new Date();
-            date.setTime(resultSet.getLong(6));
+            int date= resultSet.getInt(6);
             int pages = resultSet.getInt(7);
             int quantity = resultSet.getInt(8);
             Genre genre = Genre.valueOf(resultSet.getString(9));
@@ -233,10 +251,10 @@ public class BookDaoDB implements BookDao {
     }
 
     @Override
-    public Date updatePublicationDate(Date newDate, long id) {
+    public int updatePublicationDate(int newDate, long id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("update books set publishdate = ? where id = ?");
-            preparedStatement.setLong(1, newDate.getTime());
+            preparedStatement.setInt(1, newDate);
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwable) {

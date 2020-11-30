@@ -15,7 +15,7 @@ public class Book {
     private String author;
     private Format format;
     private String publisher;
-    private Date publicationDate;
+    private int publicationDate;
     private int pages;
     private int quantity;
     private Genre genre;
@@ -23,7 +23,7 @@ public class Book {
     private BookStatus bookStatus;
     private String description;
 
-    public Book(String name, String author, Format format, String publisher, Date publicationDate, int pages, int quantity, Genre genre, double cost, BookStatus bookStatus, String description) {
+    public Book(String name, String author, Format format, String publisher, int publicationDate, int pages, int quantity, Genre genre, double cost, BookStatus bookStatus, String description) {
         this.name = name;
         this.author = author;
         this.format = format;
