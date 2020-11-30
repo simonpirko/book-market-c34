@@ -93,7 +93,7 @@
 </div>
 <br><br><br><br><br>
 <form action="/reg" method="post">
-    Login: <input name="login"/>
+    Username: <input name="username"/>
     <br><br>
     Password: <input name="password"/>
     <br><br>

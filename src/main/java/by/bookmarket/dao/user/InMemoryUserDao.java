@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryUserDao implements UserDao {
-    private List<User> users = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
 
     @Override
     public boolean save(User user) {

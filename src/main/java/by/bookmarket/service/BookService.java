@@ -20,8 +20,9 @@ public class BookService {
         if (iMBook.contains(book) && bookDB.contains(book)) {
             return false;
         } else {
-            iMBook.save(book);
             bookDB.save(book);
+            iMBook.save(bookDB.getByBookName(book.getName()));
+
         }
         return true;
     }
