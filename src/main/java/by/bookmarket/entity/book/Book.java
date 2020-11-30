@@ -23,4 +23,9 @@ public class Book {
     private double cost;
     private BookStatus bookStatus;
     private String description;
+
+
+
+
 }
+
