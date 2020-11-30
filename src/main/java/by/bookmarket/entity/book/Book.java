@@ -19,7 +19,7 @@ public class Book {
     private GregorianCalendar publicationDate;
     private int pages;
     private int quantity;
-    private List<Genres> genres;
+    private List<Genre> genres;
     private double cost;
     private BookStatus bookStatus;
     private String description;
