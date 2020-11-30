@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 public class InMemoryBookDao implements BookDao {
-    private List<Book> books = new ArrayList<>();
+    private static List<Book> books = new ArrayList<>();
 
     @Override
     public boolean save(Book book) {

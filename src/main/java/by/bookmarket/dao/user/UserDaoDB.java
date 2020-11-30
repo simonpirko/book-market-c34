@@ -13,7 +13,7 @@ public class UserDaoDB implements UserDao {
     {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "TMS8");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "root");
         } catch (SQLException | ClassNotFoundException throwable) {
             throwable.printStackTrace();
         }
@@ -43,11 +43,11 @@ public class UserDaoDB implements UserDao {
             ResultSet resultSet = statement.executeQuery("select * from users");
             while (resultSet.next()) {
                 long id = resultSet.getLong(1);
-                String login = resultSet.getString(2);
+                String username = resultSet.getString(2);
                 String pass = resultSet.getString(3);
                 String name = resultSet.getString(4);
                 Role role = Role.valueOf(resultSet.getString(5));
-                User user = new User(id, login, pass, name, role);
+                User user = new User(id, username, pass, name, role);
                 users.add(user);
             }
         } catch (SQLException throwable) {
@@ -63,12 +63,13 @@ public class UserDaoDB implements UserDao {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from users where id = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            user = new User(resultSet.getLong(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getString(4),
-                    Role.valueOf(resultSet.getString(5)));
+            while (resultSet.next()) {
+                user = new User(resultSet.getLong(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        Role.valueOf(resultSet.getString(5)));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -79,7 +80,7 @@ public class UserDaoDB implements UserDao {
     public User getByUsername(String username) {
         User user = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from users where login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from users where username = ?");
             preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -88,8 +89,8 @@ public class UserDaoDB implements UserDao {
                     resultSet.getString(3),
                     resultSet.getString(4),
                     Role.valueOf(resultSet.getString(5)));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
         return user;
     }
