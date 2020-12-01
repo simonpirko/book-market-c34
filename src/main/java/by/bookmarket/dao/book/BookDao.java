@@ -35,8 +35,6 @@ public interface BookDao {
 
     int updatePages(int newPages, long id);
 
-    int updateQuantity(int newQuantity, long id);
-
     Genre updateGenre(Genre newGenre, long id);
 
     double updateCost(double newCost, long id);
