@@ -17,20 +17,18 @@ public class Book {
     private String publisher;
     private Date publicationDate;
     private int pages;
-    private int quantity;
     private Genre genre;
     private double cost;
     private BookStatus bookStatus;
     private String description;
 
-    public Book(String name, String author, Format format, String publisher, Date publicationDate, int pages, int quantity, Genre genre, double cost, BookStatus bookStatus, String description) {
+    public Book(String name, String author, Format format, String publisher, Date publicationDate, int pages, Genre genre, double cost, BookStatus bookStatus, String description) {
         this.name = name;
         this.author = author;
         this.format = format;
         this.publisher = publisher;
         this.publicationDate = publicationDate;
         this.pages = pages;
-        this.quantity = quantity;
         this.genre = genre;
         this.cost = cost;
         this.bookStatus = bookStatus;

@@ -26,18 +26,17 @@ public class BookDaoDB implements BookDao {
     @Override
     public boolean save(Book book) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into books values (default,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into books values (default,?,?,?,?,?,?,?,?,?,?)");
             preparedStatement.setString(1, book.getName());
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setString(3, String.valueOf(book.getFormat()));
             preparedStatement.setString(4, book.getPublisher());
             preparedStatement.setLong(5, book.getPublicationDate().getTime());
             preparedStatement.setInt(6, book.getPages());
-            preparedStatement.setInt(7, book.getQuantity());
-            preparedStatement.setString(8, String.valueOf(book.getGenre()));
-            preparedStatement.setDouble(9, book.getCost());
-            preparedStatement.setString(10, String.valueOf(book.getBookStatus()));
-            preparedStatement.setString(11, book.getDescription());
+            preparedStatement.setString(7, String.valueOf(book.getGenre()));
+            preparedStatement.setDouble(8, book.getCost());
+            preparedStatement.setString(9, String.valueOf(book.getBookStatus()));
+            preparedStatement.setString(10, book.getDescription());
             preparedStatement.execute();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
@@ -66,7 +65,7 @@ public class BookDaoDB implements BookDao {
                 double coast = resultSet.getDouble(10);
                 BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(11));
                 String description = resultSet.getString(12);
-                Book book = new Book(id, name, author, format, publisher, date, pages, quantity, genre, coast, bookStatus, description);
+                Book book = new Book(id, name, author, format, publisher, date, pages, genre, coast, bookStatus, description);
                 books.add(book);
             }
         } catch (SQLException throwable) {
@@ -96,7 +95,7 @@ public class BookDaoDB implements BookDao {
                 double coast = resultSet.getDouble(10);
                 BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(11));
                 String description = resultSet.getString(12);
-                book = new Book(bookId, name, author, format, publisher, date, pages, quantity, genre, coast, bookStatus, description);
+                book = new Book(bookId, name, author, format, publisher, date, pages, genre, coast, bookStatus, description);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -107,7 +106,7 @@ public class BookDaoDB implements BookDao {
     public Book getByBookName(String bookName) {
         Book book = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from books where login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from books where name = ?");
             preparedStatement.setString(1, bookName);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -124,7 +123,7 @@ public class BookDaoDB implements BookDao {
             double coast = resultSet.getDouble(10);
             BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(11));
             String description = resultSet.getString(12);
-            book = new Book(bookId, name, author, format, publisher, date, pages, quantity, genre, coast, bookStatus, description);
+            book = new Book(bookId, name, author, format, publisher, date, pages, genre, coast, bookStatus, description);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -255,19 +254,6 @@ public class BookDaoDB implements BookDao {
             throwable.printStackTrace();
         }
         return newPages;
-    }
-
-    @Override
-    public int updateQuantity(int newQuantity, long id) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update books set quantity = ? where id = ?");
-            preparedStatement.setInt(1, newQuantity);
-            preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException throwable) {
-            throwable.printStackTrace();
-        }
-        return newQuantity;
     }
 
     @Override

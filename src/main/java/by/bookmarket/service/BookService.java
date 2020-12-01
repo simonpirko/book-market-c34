@@ -6,7 +6,6 @@ import by.bookmarket.entity.book.Book;
 import by.bookmarket.entity.book.BookStatus;
 import by.bookmarket.entity.book.Format;
 import by.bookmarket.entity.book.Genre;
-import by.bookmarket.entity.user.User;
 import by.bookmarket.errors.*;
 
 import java.util.Date;
@@ -104,18 +103,6 @@ public class BookService {
             if (iMBook.getById(id).equals(bookDB.getById(id))) {
                 iMBook.updatePages(pages, id);
                 bookDB.updatePages(pages, id);
-                return;
-            }
-            throw new BookByIdDoesntMatch();
-        }
-        throw new IdDoesntExist();
-    }
-
-    public void synchronizedUpdateQuantity(int newQuantity, long id) {
-        if (iMBook.contains(id) && bookDB.contains(id)) {
-            if (iMBook.getById(id).equals(bookDB.getById(id))) {
-                iMBook.updateQuantity(newQuantity, id);
-                bookDB.updateQuantity(newQuantity, id);
                 return;
             }
             throw new BookByIdDoesntMatch();

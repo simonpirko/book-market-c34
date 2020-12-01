@@ -115,12 +115,6 @@ public class InMemoryBookDao implements BookDao {
     }
 
     @Override
-    public int updateQuantity(int newQuantity, long id) {
-        getById(id).setQuantity(newQuantity);
-        return newQuantity;
-    }
-
-    @Override
     public Genre updateGenre(Genre newGenre, long id) {
         getById(id).setGenre(newGenre);
         return newGenre;
