@@ -98,20 +98,7 @@
     <h1 align="center" style="color: darkgreen; border-bottom: 2px solid darkgreen;">Книжный магазин -> Художественная литература</h1>
 <br><br>
 <form action="/book" method="post">
-<%--        <label><b>Наименование: </b> ${requestScope.book.name}</label>
-       <label> <b>Автор:</b> ${requestScope.book.author}</label>
-       <label><b>Формат: </b>${requestScope.book.format}</label>
-       <label><b>Издательство:</b> ${requestScope.book.publisher}</label>>
-       <label><b>Год издания:</b> ${requestScope.book.publicationDate}</label>
-       <label><b>Количество страниц:</b> ${requestScope.book.pages}</label>
-       <label><b>Количество:</b> ${requestScope.book.quantity}</label>
-       <label><b>Жанр: </b>${requestScope.book.genre}</label>
-       <label><b>Цена:</b> ${requestScope.book.cost}</label>
-       <label><b>Статус: </b>${requestScope.book.bookStatus}</label>
-       <label><b>Описание:</b> ${requestScope.book.description}</label>
-   <button >Заказать</button>
-   --%>
-<c:forEach var="elem" items="${sessionScope.all}">
+<c:forEach var="elem" items="${sessionScope.allRomance}">
     <label><b>Наименование: </b> <c:out value="${elem.name}"/></label>
     <label> <b>Автор:</b> <c:out value="${elem.author}"/> </label>
     <label><b>Формат: </b><c:out value="${elem.format}"/></label>

@@ -89,7 +89,7 @@
 <div id="content">
     <h1 align="center" style="color: darkgreen; border-bottom: 2px solid darkgreen;">Книжный магазин -> Учебная литература</h1>
     <br><br>
-    <form action="/book" method="post">
+    <form action="/eduBook" method="post">
 
         <c:forEach var="elem" items="${sessionScope.allEdu}">
             <label><b>Наименование: </b> <c:out value="${elem.name}"/></label>

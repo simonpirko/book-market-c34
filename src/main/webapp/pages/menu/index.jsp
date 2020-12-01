@@ -65,7 +65,7 @@
                 <a class="nav-link" href="/pages/menu/authorization.jsp" style="color: black;">Авторизация</a>
             </li>
             <li class="nav-item" style="border-bottom: 1px solid darkgreen; border-top: 1px solid darkgreen;background:LightCyan">
-                <a class="nav-link" href="/pages/menu/profile.jsp" style="color: black;">Профиль</a>
+                <a class="nav-link" href="/pro" style="color: black;">Профиль</a>
             </li>
             <li class="nav-item" style="border-bottom: 1px solid darkgreen; border-top: 1px solid darkgreen;background:LightCyan">
                 <a class="nav-link" href="/pages/menu/orders.jsp" style="color: black;">Мои заказы</a>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/book", name = "bookServlet")
@@ -30,9 +31,16 @@ public class BookServlet extends HttpServlet {
         if(count==0) {
             Book bookFirst = new Book("1984", "Джордж Оруэлл", Format.HARDBACK, "Москва: Издательство АСТ", 2020, 318, 1, Genre.ROMANCE, 16.29, BookStatus.AVAILABLE, "По Оруэллу, нет и не может быть ничего ужаснее тотальной несвободы...");
           //  httpSession.setAttribute("book", bookFirst);
-            bookService.synchronizedSave(bookFirst);
+            bookService.synchronizedSaveFirst(bookFirst);
             List<Book> all = bookService.getAllFromInMemory();
+            List<Book> allRomance= new ArrayList<>();
+            for(Book book: all){
+                if(book.getGenre().equals("ROMANCE")){
+                    allRomance.add(book);
+                }
+            }
             httpSession.setAttribute("all", all);
+            httpSession.setAttribute("allRomance", allRomance);
             count++;
         }
 

@@ -13,7 +13,7 @@ public class UserDaoDB implements UserDao {
     {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "root");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "TMS8");
         } catch (SQLException | ClassNotFoundException throwable) {
             throwable.printStackTrace();
         }

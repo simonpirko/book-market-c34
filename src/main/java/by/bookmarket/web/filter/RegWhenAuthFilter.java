@@ -10,6 +10,7 @@ import java.io.IOException;
 
 @WebFilter (filterName = "RegWhenAuthFilter", servletNames="regServlet")
 public class RegWhenAuthFilter extends HttpFilter {
+
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         if (req.getSession().getAttribute("user") == null) {
@@ -18,4 +19,6 @@ public class RegWhenAuthFilter extends HttpFilter {
             res.sendError(403);
         }
     }
+
+
 }

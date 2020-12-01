@@ -19,19 +19,27 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Role role = (Role) session.getAttribute("role");
-        String login = (String) session.getAttribute("login");
+        User user = (User) session.getAttribute("user");
         String edit = req.getParameter("edit");
-        if(role==Role.USER && edit!=null){
+
+        if(edit!=null){
             String newLogin = req.getParameter("login");
             String newPassword = req.getParameter("password");
             String newName=req.getParameter("name");
-            User user = userService.getByUsernameFromInMemory(login);
+
             user.setUsername(newLogin);
             user.setPassword(newPassword);
             user.setName(newName);
             req.setAttribute("messageEdit", "Изменения сохранены");
+            session.setAttribute("user",user);
+            userService.synchronizedUpdateName(newName,user.getId());
+            userService.synchronizedUpdatePassword(newPassword,user.getId());
         }
         getServletContext().getRequestDispatcher("/pages/menu/profile.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
     }
 }
