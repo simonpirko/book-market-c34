@@ -2,6 +2,7 @@ package by.bookmarket.web.servlet;
 
 import by.bookmarket.entity.user.User;
 import by.bookmarket.service.UserService;
+import by.bookmarket.validator.RegistrationValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/auth", name = "authServlet")
 public class AuthorizationServlet extends HttpServlet {
     private UserService userService = new UserService();
+    private RegistrationValidator registrationValidator = new RegistrationValidator();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,14 +25,19 @@ public class AuthorizationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        User user = userService.getByUsernameFromInMemory(login);
-        if (user.getPassword().equals(password)) {
-            HttpSession httpSession = req.getSession();
-            httpSession.setAttribute("user", user);
-            getServletContext().getRequestDispatcher("/pages/menu/index.jsp").forward(req, resp);
-        } else {
-            req.setAttribute("message", "Failed: wrong password");
+        if (userService.contains(login)){
+            String password = req.getParameter("password");
+            User user = userService.getByUsernameFromInMemory(login);
+            if (user.getPassword().equals(password)){
+                HttpSession httpSession = req.getSession();
+                httpSession.setAttribute("user", user);
+                getServletContext().getRequestDispatcher("/pages/menu/index.jsp").forward(req, resp);
+            }else {
+                req.setAttribute("wrongPassword", "Error: wrong password!");
+                getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
+            }
+        }else {
+            req.setAttribute("userDoesntExist", "Error: no such user!");
             getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
         }
     }

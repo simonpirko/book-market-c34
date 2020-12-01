@@ -88,4 +88,8 @@ public class UserService {
         }
         return iMUD.getById(id);
     }
+
+    public boolean contains(String username){
+        return iMUD.contains(username);
+    }
 }

@@ -60,11 +60,10 @@ public class BookDaoDB implements BookDao {
                 Date date = new Date();
                 date.setTime(resultSet.getLong(6));
                 int pages = resultSet.getInt(7);
-                int quantity = resultSet.getInt(8);
-                Genre genre = Genre.valueOf(resultSet.getString(9));
-                double coast = resultSet.getDouble(10);
-                BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(11));
-                String description = resultSet.getString(12);
+                Genre genre = Genre.valueOf(resultSet.getString(8));
+                double coast = resultSet.getDouble(9);
+                BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(10));
+                String description = resultSet.getString(11);
                 Book book = new Book(id, name, author, format, publisher, date, pages, genre, coast, bookStatus, description);
                 books.add(book);
             }
@@ -90,11 +89,10 @@ public class BookDaoDB implements BookDao {
                 String publisher = resultSet.getString(5);
                 date.setTime(resultSet.getLong(6));
                 int pages = resultSet.getInt(7);
-                int quantity = resultSet.getInt(8);
-                Genre genre = Genre.valueOf(resultSet.getString(9));
-                double coast = resultSet.getDouble(10);
-                BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(11));
-                String description = resultSet.getString(12);
+                Genre genre = Genre.valueOf(resultSet.getString(8));
+                double coast = resultSet.getDouble(9);
+                BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(10));
+                String description = resultSet.getString(11);
                 book = new Book(bookId, name, author, format, publisher, date, pages, genre, coast, bookStatus, description);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -118,11 +116,10 @@ public class BookDaoDB implements BookDao {
             Date date = new Date();
             date.setTime(resultSet.getLong(6));
             int pages = resultSet.getInt(7);
-            int quantity = resultSet.getInt(8);
-            Genre genre = Genre.valueOf(resultSet.getString(9));
-            double coast = resultSet.getDouble(10);
-            BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(11));
-            String description = resultSet.getString(12);
+            Genre genre = Genre.valueOf(resultSet.getString(8));
+            double coast = resultSet.getDouble(9);
+            BookStatus bookStatus = BookStatus.valueOf(resultSet.getString(10));
+            String description = resultSet.getString(11);
             book = new Book(bookId, name, author, format, publisher, date, pages, genre, coast, bookStatus, description);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
