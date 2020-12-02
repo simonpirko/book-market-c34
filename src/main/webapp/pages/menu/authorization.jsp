@@ -7,8 +7,8 @@
 </head>
 <body>
 <form action="/auth" method="post">
-    Input login
-    <input type="text" name="login">
+    Input username
+    <input type="text" name="username">
     <br>
     Input password
     <input type="password" name="password">

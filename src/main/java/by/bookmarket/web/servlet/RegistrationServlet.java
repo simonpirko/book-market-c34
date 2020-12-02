@@ -24,7 +24,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("login");
+        String username = req.getParameter("username");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
         if (registrationValidator.validLogin(username)){
