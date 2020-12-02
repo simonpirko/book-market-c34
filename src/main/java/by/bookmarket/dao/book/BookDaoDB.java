@@ -31,7 +31,7 @@ public class BookDaoDB implements BookDao {
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setString(3, String.valueOf(book.getFormat()));
             preparedStatement.setString(4, book.getPublisher());
-            preparedStatement.setLong(5, book.getPublicationDate().getTime());
+            preparedStatement.setInt(5, book.getPublicationDate());
             preparedStatement.setInt(6, book.getPages());
             preparedStatement.setString(7, String.valueOf(book.getGenre()));
             preparedStatement.setDouble(8, book.getCost());
@@ -57,8 +57,7 @@ public class BookDaoDB implements BookDao {
                 String author = resultSet.getString(3);
                 Format format =  Format.valueOf(resultSet.getString(4));
                 String publisher = resultSet.getString(5);
-                Date date = new Date();
-                date.setTime(resultSet.getLong(6));
+                int date = resultSet.getInt(6);
                 int pages = resultSet.getInt(7);
                 Genre genre = Genre.valueOf(resultSet.getString(8));
                 double coast = resultSet.getDouble(9);
@@ -76,7 +75,6 @@ public class BookDaoDB implements BookDao {
     @Override
     public Book getById(long id) {
         Book book = null;
-        Date date = new Date();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from books where id = ?");
             preparedStatement.setLong(1, id);
@@ -87,7 +85,7 @@ public class BookDaoDB implements BookDao {
                 String author = resultSet.getString(3);
                 Format format = Format.valueOf(resultSet.getString(4));
                 String publisher = resultSet.getString(5);
-                date.setTime(resultSet.getLong(6));
+                int date = resultSet.getInt(6);
                 int pages = resultSet.getInt(7);
                 Genre genre = Genre.valueOf(resultSet.getString(8));
                 double coast = resultSet.getDouble(9);
@@ -113,8 +111,7 @@ public class BookDaoDB implements BookDao {
             String author = resultSet.getString(3);
             Format format =  Format.valueOf(resultSet.getString(4));
             String publisher = resultSet.getString(5);
-            Date date = new Date();
-            date.setTime(resultSet.getLong(6));
+            int date = resultSet.getInt(6);
             int pages = resultSet.getInt(7);
             Genre genre = Genre.valueOf(resultSet.getString(8));
             double coast = resultSet.getDouble(9);
@@ -228,10 +225,10 @@ public class BookDaoDB implements BookDao {
     }
 
     @Override
-    public Date updatePublicationDate(Date newDate, long id) {
+    public int updatePublicationDate (int newDate, long id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("update books set publishdate = ? where id = ?");
-            preparedStatement.setLong(1, newDate.getTime());
+            preparedStatement.setInt(1, newDate);
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwable) {

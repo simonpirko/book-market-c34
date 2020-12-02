@@ -12,7 +12,7 @@ import java.io.IOException;
 public class FilterAuthorize extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        if (req.getSession().getAttribute("user") != null) {
+        if (req.getSession().getAttribute("user") == null) {
             chain.doFilter(req, res);
         } else {
             res.sendError(401);

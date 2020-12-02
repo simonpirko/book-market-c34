@@ -86,7 +86,7 @@ public class BookService {
         throw new IdDoesntExist();
     }
 
-    public void synchronizedUpdatePublicationDate(Date newPublicationDate, long id) {
+    public void synchronizedUpdatePublicationDate(int newPublicationDate, long id) {
         if (iMBook.contains(id) && bookDB.contains(id)) {
             if (iMBook.getById(id).equals(bookDB.getById(id))) {
                 iMBook.updatePublicationDate(newPublicationDate, id);

@@ -25,18 +25,21 @@ public class AuthorizationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
-        if (userService.contains(login)){
+        if (userService.contains(login)) {
             String password = req.getParameter("password");
             User user = userService.getByUsernameFromInMemory(login);
-            if (user.getPassword().equals(password)){
+            if (user.getPassword().equals(password)) {
                 HttpSession httpSession = req.getSession();
                 httpSession.setAttribute("user", user);
+                req.setAttribute("regVisibility",false);
+                req.setAttribute("authVisibility",false);
+                req.setAttribute("profileMenuVisibility",true);
                 getServletContext().getRequestDispatcher("/pages/menu/index.jsp").forward(req, resp);
-            }else {
+            } else {
                 req.setAttribute("wrongPassword", "Error: wrong password!");
                 getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
             }
-        }else {
+        } else {
             req.setAttribute("userDoesntExist", "Error: no such user!");
             getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
         }
