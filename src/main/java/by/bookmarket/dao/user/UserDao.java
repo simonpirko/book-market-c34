@@ -17,6 +17,8 @@ public interface UserDao {
 
     boolean contains(User user);
 
+    boolean contains(String username);
+
     boolean delete(long id);
 
     String updateName(String newName, long id);

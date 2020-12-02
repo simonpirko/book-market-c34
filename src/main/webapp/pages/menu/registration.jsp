@@ -7,16 +7,28 @@
 </head>
 <body>
 <form action="/reg" method="post">
-    Username: <input name="username"/>
-    <br><br>
+    Login: <input name="login"/>
+    <br>
+    <p style="color:red;font-size: 24px">
+    ${requestScope.usernameError}
+    </p>
+    <p style="color:red;font-size: 24px">
+        ${requestScope.userExistError}
+    </p>
+    <br>
     Password: <input name="password"/>
-    <br><br>
+    <br>
+    <p style="color:red;font-size: 24px">
+        ${requestScope.passwordError}
+    </p>
+    <br>
     Name: <input name="name"/>
-    <br><br>
+    <br>
+    <p style="color:red;font-size: 24px">
+        ${requestScope.nameError}
+    </p>
+    <br>
     <input type="submit" value="Submit"/>
 </form>
-<p style="color:red;font-size: 24px">
-    ${requestScope.message}
-</p>
 </body>
 </html>
