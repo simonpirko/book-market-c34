@@ -31,7 +31,7 @@ public interface BookDao {
 
     String updatePublisher(String newPublisher, long id);
 
-    Date updatePublicationDate(Date newDate, long id);
+    int updatePublicationDate(int newDate, long id);
 
     int updatePages(int newPages, long id);
 
