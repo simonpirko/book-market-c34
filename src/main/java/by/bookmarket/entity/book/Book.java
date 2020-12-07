@@ -15,14 +15,14 @@ public class Book {
     private String author;
     private Format format;
     private String publisher;
-    private Date publicationDate;
+    private int publicationDate;
     private int pages;
     private Genre genre;
     private double cost;
     private BookStatus bookStatus;
     private String description;
 
-    public Book(String name, String author, Format format, String publisher, Date publicationDate, int pages, Genre genre, double cost, BookStatus bookStatus, String description) {
+    public Book(String name, String author, Format format, String publisher, int publicationDate, int pages, Genre genre, double cost, BookStatus bookStatus, String description) {
         this.name = name;
         this.author = author;
         this.format = format;

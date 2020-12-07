@@ -23,23 +23,23 @@ public class ProfileServlet extends HttpServlet {
         String edit = req.getParameter("edit");
 
         if(edit!=null){
-            String newLogin = req.getParameter("login");
+            String username = req.getParameter("login");
             String newPassword = req.getParameter("password");
             String newName=req.getParameter("name");
-
-            user.setUsername(newLogin);
+            long id=user.getId();
             user.setPassword(newPassword);
             user.setName(newName);
+            userService.synchronizedUpdateName(newName,id);
+            userService.synchronizedUpdatePassword(newPassword,id);
             req.setAttribute("messageEdit", "Изменения сохранены");
             session.setAttribute("user",user);
-            userService.synchronizedUpdateName(newName,user.getId());
-            userService.synchronizedUpdatePassword(newPassword,user.getId());
         }
+
         getServletContext().getRequestDispatcher("/pages/menu/profile.jsp").forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        getServletContext().getRequestDispatcher("/pages/menu/profile.jsp").forward(req, resp);
     }
 }

@@ -98,14 +98,13 @@
     <h1 align="center" style="color: darkgreen; border-bottom: 2px solid darkgreen;">Книжный магазин -> Художественная литература</h1>
 <br><br>
 <form action="/book" method="post">
-<c:forEach var="elem" items="${sessionScope.allRomance}">
+<c:forEach var="elem" items="${sessionScope.all}">
     <label><b>Наименование: </b> <c:out value="${elem.name}"/></label>
     <label> <b>Автор:</b> <c:out value="${elem.author}"/> </label>
     <label><b>Формат: </b><c:out value="${elem.format}"/></label>
     <label><b>Издательство:</b> <c:out value="${elem.publisher}"/></label>
     <label><b>Год издания:</b> <c:out value="${elem.publicationDate}"/></label>
     <label><b>Количество страниц:</b> <c:out value="${elem.pages}"/></label>
-    <label><b>Количество:</b> <c:out value="${elem.quantity}"/></label>
     <label><b>Жанр: </b><c:out value="${elem.genre}"/></label>
     <label><b>Цена:</b> <c:out value="${elem.cost}"/></label>
     <label><b>Статус: </b><c:out value="${elem.bookStatus}"/></label>

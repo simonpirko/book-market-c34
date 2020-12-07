@@ -105,12 +105,11 @@
 <div class="menu">
 <form action="/pro" method="post">
     <br>
-    <label>${sessionScope.user.id}</label>
     <br>
     <label>Ваше имя</label>
     <input class="form-control" type="text" placeholder="Введите ваше имя" name="name" value="${sessionScope.user.name}"><br>
     <label>Ваш логин</label>
-    <input class="form-control" type="text" placeholder="Введите ваш логин" name="login" value="${sessionScope.user.username}" disabled><br>
+    <input class="form-control" type="text" placeholder="Введите ваш логин" name="login" value="${sessionScope.user.username}"><br>
     <label>Ваш пароль</label>
     <input class="form-control" type="text" placeholder="Введите ваш пароль" name="password" value="${sessionScope.user.password}"><br>
     <br><br>

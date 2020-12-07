@@ -29,7 +29,7 @@ public class BookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
         if(count==0) {
-            Book bookFirst = new Book("1984", "Джордж Оруэлл", Format.HARDBACK, "Москва: Издательство АСТ", 2020, 318, 1, Genre.ROMANCE, 16.29, BookStatus.AVAILABLE, "По Оруэллу, нет и не может быть ничего ужаснее тотальной несвободы...");
+            Book bookFirst = new Book("1984", "Джордж Оруэлл", Format.HARDBACK, "Москва: Издательство АСТ", 2020, 318, Genre.ROMANCE, 16.29, BookStatus.AVAILABLE, "По Оруэллу, нет и не может быть ничего ужаснее тотальной несвободы...");
           //  httpSession.setAttribute("book", bookFirst);
             bookService.synchronizedSaveFirst(bookFirst);
             List<Book> all = bookService.getAllFromInMemory();
