@@ -32,6 +32,7 @@ public class BookServlet extends HttpServlet {
             Book bookFirst = new Book("1984", "Джордж Оруэлл", Format.HARDBACK, "Москва: Издательство АСТ", 2020, 318, Genre.ROMANCE, 16.29, BookStatus.AVAILABLE, "По Оруэллу, нет и не может быть ничего ужаснее тотальной несвободы...");
           //  httpSession.setAttribute("book", bookFirst);
             bookService.synchronizedSaveFirst(bookFirst);
+
             List<Book> all = bookService.getAllFromInMemory();
             List<Book> allRomance= new ArrayList<>();
             for(Book book: all){

@@ -91,7 +91,7 @@
     <br><br>
     <form action="/eduBook" method="post">
 
-        <c:forEach var="elem" items="${sessionScope.all}">
+        <c:forEach var="elem" items="${sessionScope.allNew}">
             <label><b>Наименование: </b> <c:out value="${elem.name}"/></label>
             <label> <b>Автор:</b> <c:out value="${elem.author}"/> </label>
             <label><b>Формат: </b><c:out value="${elem.format}"/></label>

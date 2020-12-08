@@ -30,7 +30,7 @@ public class EduBookServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         if(count==0) {
             Book bookFirst = new Book("Изучаем Java", "Берт Бейтс, Кэти Сьерра", Format.HARDBACK, "Москва: Эксмо", 2015, 720, Genre.EDUCATION, 33.47, BookStatus.AVAILABLE, "Это не просто книга. Она не только научит вас теории языка Java и объектно-ориентированного программирования, она сделает вас программистом.");
-            httpSession.setAttribute("eduBook", bookFirst);
+           // httpSession.setAttribute("eduBook", bookFirst);
             bookService.synchronizedSaveFirst(bookFirst);
 
             List<Book> all = bookService.getAllFromInMemory();
@@ -40,7 +40,7 @@ public class EduBookServlet extends HttpServlet {
                     allEducation.add(book);
                 }
             }
-            httpSession.setAttribute("all", all);
+            httpSession.setAttribute("allNew", all);
             httpSession.setAttribute("allEducation", allEducation);
             count++;
         }
