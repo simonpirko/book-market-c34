@@ -123,6 +123,17 @@ public class UserDaoDB implements UserDao {
     }
 
     @Override
+    public boolean contains(String username) {
+        List<User> users = getAll();
+        for (int i = 0; i < users.size(); i++) {
+            if (username.equals(users.get(i).getUsername())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean delete(long id) {
         try {
             connection.setAutoCommit(false);

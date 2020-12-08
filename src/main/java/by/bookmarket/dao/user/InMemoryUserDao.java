@@ -64,6 +64,16 @@ public class InMemoryUserDao implements UserDao {
     }
 
     @Override
+    public boolean contains(String username) {
+        for (User eachUser : users) {
+            if (eachUser.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean delete(long id) {
         if (id == -1 || id == -2) {
             return false;

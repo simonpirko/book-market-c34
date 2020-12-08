@@ -103,7 +103,7 @@ public class InMemoryBookDao implements BookDao {
     }
 
     @Override
-    public Date updatePublicationDate(Date newDate, long id) {
+    public int updatePublicationDate(int newDate, long id) {
         getById(id).setPublicationDate(newDate);
         return newDate;
     }
@@ -112,12 +112,6 @@ public class InMemoryBookDao implements BookDao {
     public int updatePages(int newPages, long id) {
         getById(id).setPages(newPages);
         return newPages;
-    }
-
-    @Override
-    public int updateQuantity(int newQuantity, long id) {
-        getById(id).setQuantity(newQuantity);
-        return newQuantity;
     }
 
     @Override

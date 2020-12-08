@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.GregorianCalendar;
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,16 +13,23 @@ public class Book {
     private String author;
     private Format format;
     private String publisher;
-    private GregorianCalendar publicationDate;
+    private int publicationDate;
     private int pages;
-    private int quantity;
-    private List<Genre> genres;
+    private Genre genre;
     private double cost;
     private BookStatus bookStatus;
     private String description;
 
-
-
-
+    public Book(String name, String author, Format format, String publisher, int publicationDate, int pages, Genre genre, double cost, BookStatus bookStatus, String description) {
+        this.name = name;
+        this.author = author;
+        this.format = format;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+        this.pages = pages;
+        this.genre = genre;
+        this.cost = cost;
+        this.bookStatus = bookStatus;
+        this.description = description;
+    }
 }
-
