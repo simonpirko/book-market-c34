@@ -20,4 +20,9 @@ public class User {
         this.name = name;
         this.role = role;
     }
+
+    public User(long id, String username) {
+        this.id = id;
+        this.username = username;
+    }
 }
