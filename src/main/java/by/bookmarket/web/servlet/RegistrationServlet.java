@@ -19,6 +19,9 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("regVisibility", false);
+        req.setAttribute("authVisibility", true);
+        req.setAttribute("profileMenuVisibility", false);
         getServletContext().getRequestDispatcher("/pages/menu/registration.jsp").forward(req, resp);
     }
 
@@ -27,27 +30,27 @@ public class RegistrationServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
-        if (registrationValidator.validLogin(username)){
-            if (userService.contains(username)){
+        if (registrationValidator.validLogin(username)) {
+            if (userService.contains(username)) {
                 req.setAttribute("userExistError", "Error: User with this login already exist!");
                 getServletContext().getRequestDispatcher("/pages/menu/registration.jsp").forward(req, resp);
             }
-            if (registrationValidator.validPassword(password)){
-                if (registrationValidator.validName(name)){
+            if (registrationValidator.validPassword(password)) {
+                if (registrationValidator.validName(name)) {
                     User user = new User(username, password, name, Role.USER);
                     userService.synchronizedSave(user);
                     getServletContext().getRequestDispatcher("/pages/menu/authorization.jsp").forward(req, resp);
-                }else{
+                } else {
                     req.setAttribute("nameError", "Error: name must be at least 2 symbols!");
-                    getServletContext().getRequestDispatcher("/pages/menu/registration.jsp").forward(req, resp);
+                    doGet(req, resp);
                 }
-            }else{
+            } else {
                 req.setAttribute("passwordError", "Error: password must be at least 5 symbols!");
                 getServletContext().getRequestDispatcher("/pages/menu/registration.jsp").forward(req, resp);
             }
-        }else{
+        } else {
             req.setAttribute("usernameError", "Error: login must be at least 3 symbols!");
-            getServletContext().getRequestDispatcher("/pages/menu/registration.jsp").forward(req, resp);
+            doGet(req, resp);
         }
 
     }
