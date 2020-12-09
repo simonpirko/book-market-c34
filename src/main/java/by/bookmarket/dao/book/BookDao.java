@@ -5,11 +5,11 @@ import by.bookmarket.entity.book.BookStatus;
 import by.bookmarket.entity.book.Format;
 import by.bookmarket.entity.book.Genre;
 
-import java.util.Date;
 import java.util.List;
 
 public interface BookDao {
     boolean save(Book book);
+    public boolean saveFirst(Book book);
 
     List<Book> getAll();
 

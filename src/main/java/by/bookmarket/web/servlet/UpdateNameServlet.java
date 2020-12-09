@@ -31,6 +31,6 @@ public class UpdateNameServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
-        userService.synchronizedUpdateName(newName, Long.parseLong(id));
+   //     userService.synchronizedUpdateName(newName, Long.parseLong(id));
     }
 }

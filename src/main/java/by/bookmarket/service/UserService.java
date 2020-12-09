@@ -34,12 +34,24 @@ public class UserService {
     }
 
     public void synchronizedUpdateName(String newName, long id) {
-        if (iMUD.contains(id) && uDDB.contains(id)) {
+    /*    long idM = iMUD.getByUsername(username).getId();
+        long idBD = uDDB.getByUsername(username).getId();
+        if (iMUD.contains(idM) && uDDB.contains(idBD)) {
+            if (iMUD.getByUsername(username).equals(uDDB.getByUsername(username))) {
+                iMUD.updateName(newName,idM);
+                uDDB.updateName(newName, idBD);
+                return;
+            }
+
+     */
+       if (iMUD.contains(id) && uDDB.contains(id)) {
             if (iMUD.getById(id).equals(uDDB.getById(id))) {
                 iMUD.updateName(newName, id);
                 uDDB.updateName(newName, id);
                 return;
             }
+
+
             throw new UsersByIdDoesntMatch();
         }
         throw new IdDoesntExist();

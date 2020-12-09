@@ -26,6 +26,16 @@ public class BookService {
         return true;
     }
 
+    public boolean synchronizedSaveFirst(Book book) {
+        if (iMBook.contains(book) && bookDB.contains(book)) {
+            return false;
+        } else {
+            iMBook.save(book);
+            bookDB.save(book);
+        }
+        return true;
+    }
+
     public void synchronizedDelete(long id) {
         if (iMBook.contains(id) && bookDB.contains(id)) {
             if (iMBook.getById(id).equals(bookDB.getById(id))) {
