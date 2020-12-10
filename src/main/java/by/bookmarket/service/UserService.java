@@ -26,35 +26,25 @@ public class UserService {
             if (iMUD.getById(id).equals(uDDB.getById(id))) {
                 iMUD.delete(id);
                 uDDB.delete(id);
-                return;
+            } else {
+                throw new UsersByIdDoesntMatch();
             }
-            throw new UsersByIdDoesntMatch();
+        } else {
+            throw new IdDoesntExist();
         }
-        throw new IdDoesntExist();
     }
 
     public void synchronizedUpdateName(String newName, long id) {
-    /*    long idM = iMUD.getByUsername(username).getId();
-        long idBD = uDDB.getByUsername(username).getId();
-        if (iMUD.contains(idM) && uDDB.contains(idBD)) {
-            if (iMUD.getByUsername(username).equals(uDDB.getByUsername(username))) {
-                iMUD.updateName(newName,idM);
-                uDDB.updateName(newName, idBD);
-                return;
-            }
-
-     */
-       if (iMUD.contains(id) && uDDB.contains(id)) {
+        if (iMUD.contains(id) && uDDB.contains(id)) {
             if (iMUD.getById(id).equals(uDDB.getById(id))) {
                 iMUD.updateName(newName, id);
                 uDDB.updateName(newName, id);
-                return;
+            } else {
+                throw new UsersByIdDoesntMatch();
             }
-
-
-            throw new UsersByIdDoesntMatch();
+        } else {
+            throw new IdDoesntExist();
         }
-        throw new IdDoesntExist();
     }
 
     public void synchronizedUpdatePassword(String newPassword, long id) {
@@ -62,46 +52,47 @@ public class UserService {
             if (iMUD.getById(id).equals(uDDB.getById(id))) {
                 iMUD.updatePassword(newPassword, id);
                 uDDB.updatePassword(newPassword, id);
-                return;
+            } else {
+                throw new UsersByIdDoesntMatch();
             }
-            throw new UsersByIdDoesntMatch();
+        } else {
+            throw new IdDoesntExist();
         }
-        throw new IdDoesntExist();
     }
 
-    public List<User> getAllFromInMemory(){
-        if (iMUD.getAll().isEmpty()){
+    public List<User> getAllFromInMemory() {
+        if (iMUD.getAll().isEmpty()) {
             throw new IsEmptyException();
         }
         return iMUD.getAll();
     }
 
-    public List<User> getAllFromDB(){
-        if (uDDB.getAll().isEmpty()){
+    public List<User> getAllFromDB() {
+        if (uDDB.getAll().isEmpty()) {
             throw new IsEmptyException();
         }
         return uDDB.getAll();
     }
 
-    public void synchronize(){
+    public void synchronize() {
         iMUD.save(uDDB.getAll());
     }
 
-    public User getByUsernameFromInMemory(String username){
-        if (iMUD.getByUsername(username) == null){
+    public User getByUsernameFromInMemory(String username) {
+        if (iMUD.getByUsername(username) == null) {
             throw new UserByUsernameDoesntExist();
         }
         return iMUD.getByUsername(username);
     }
 
-    public User getByIdFromInMemory(long id){
-        if (iMUD.getById(id) == null){
+    public User getByIdFromInMemory(long id) {
+        if (iMUD.getById(id) == null) {
             throw new UsersByIdDoesntMatch();
         }
         return iMUD.getById(id);
     }
 
-    public boolean contains(String username){
+    public boolean contains(String username) {
         return iMUD.contains(username);
     }
 }

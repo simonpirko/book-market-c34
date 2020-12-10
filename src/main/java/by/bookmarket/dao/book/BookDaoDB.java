@@ -16,7 +16,7 @@ public class BookDaoDB implements BookDao {
     {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "TMS8");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bookMarket", "postgres", "root");
         } catch (SQLException | ClassNotFoundException throwable) {
             throwable.printStackTrace();
         }
